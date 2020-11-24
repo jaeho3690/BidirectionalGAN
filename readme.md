@@ -5,9 +5,11 @@ This is the pytorch implementation of Bidirectional GAN(BiGAN). Unlike ordinary 
 There are not many, but a few, references for BiGAN. However, I wasn't able to find a pytorch version and without a convolutional structure. My codes are implemented in MLP style where the image is flattened. The model structure were referenced from this great [github](https://github.com/eriklindernoren/PyTorch-GAN/blob/master/implementations/cgan/cgan.py) repo. However, I made some minor adjustments as the implemented model struck on mode collapse.
 
 ### Requirements
+```
 Main dependencies (with python=3.6)  
 pytorch = 1.6.0  
 torchvision = 0.7.0  
+```
 
 ### Installation
 ```
