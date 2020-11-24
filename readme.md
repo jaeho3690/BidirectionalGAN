@@ -21,10 +21,10 @@ python main.py
 
 ### Results
 **Epoch 1**  
-![Image1](/figures/E1_Iteration0_fake.png)  
+![Image1](/figures/E1_Iteration0_fake.png){: width="100" height="100"}    
 **Epoch 69**  
-![Image1](/figures/E69_Iteration400_fake.png)  
+![Image1](/figures/E69_Iteration400_fake.png){: width="100" height="100"}    
 **Epoch 250**  
-![Image1](/figures/E250_Iteration400_fake.png)  
+![Image1](/figures/E250_Iteration400_fake.png){: width="100" height="100"}    
 **Epoch 399**  
-![Image1](/figures/E399_Iteration400_fake.png)  
+![Image1](/figures/E399_Iteration400_fake.png)  {: width="100" height="100"}  
