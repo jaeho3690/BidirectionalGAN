@@ -57,13 +57,9 @@ class BiGAN(nn.Module):
             self._D_scheduler.step()
 
             for i, (images, _) in enumerate(train_loader):
-                if epoch < 4:
-                    valid = Variable(Tensor(images.size(0), 1).fill_(0.8), requires_grad=False)
-                    fake = Variable(Tensor(images.size(0), 1).fill_(0.2), requires_grad=False)
-                else:
-                    # Adversarial ground truths
-                    valid = Variable(Tensor(images.size(0), 1).fill_(1), requires_grad=False)
-                    fake = Variable(Tensor(images.size(0), 1).fill_(0), requires_grad=False)
+                # Adversarial ground truths
+                valid = Variable(Tensor(images.size(0), 1).fill_(1), requires_grad=False)
+                fake = Variable(Tensor(images.size(0), 1).fill_(0), requires_grad=False)
 
                 
                 # ---------------------
@@ -86,7 +82,7 @@ class BiGAN(nn.Module):
                 z = Variable(Tensor(np.random.normal(0, 1, (images.shape[0],self._latent_dim))))
                 (gen_img,z)=self._G(z)
                 predict_generator = self._D(gen_img,z)
-                                                                                                                           #not sure
+                                                                                                               
                 G_loss = (self._adversarial_criterion(predict_generator,valid)+self._adversarial_criterion(predict_encoder,fake)) *0.5   
 
                 self._G_optimizer.zero_grad()
@@ -99,7 +95,6 @@ class BiGAN(nn.Module):
 
                 z = Variable(Tensor(np.random.normal(0, 1, (images.shape[0],self._latent_dim))))
                 (gen_img,z)=self._G(z)
-                # 이거 이렇게 해도 되나...???
                 (original_img,z_)= self._E(images)
                 predict_encoder = self._D(original_img,z_)
                 predict_generator = self._D(gen_img,z)
@@ -126,9 +121,6 @@ class BiGAN(nn.Module):
 
 
 
-    def test(self,test_loader):
-        pass
-
     def weights_init(self,m):
         classname = m.__class__.__name__
         if classname.find('BatchNorm') != -1:
@@ -144,6 +136,6 @@ class BiGAN(nn.Module):
             m.bias.data.fill_(0)
         elif classname.find('Linear') != -1:
             m.bias.data.fill_(0)
-    #def sample_
+
 
 

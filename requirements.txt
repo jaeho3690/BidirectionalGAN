@@ -1,0 +1,26 @@
+backcall==0.2.0
+certifi==2020.6.20
+decorator==4.4.2
+future==0.18.2
+ipykernel @ file:///tmp/build/80754af9/ipykernel_1596206602906/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///tmp/build/80754af9/ipython_1593447367857/work
+ipython-genutils==0.2.0
+jedi @ file:///tmp/build/80754af9/jedi_1598371618777/work
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-core==4.6.3
+numpy==1.19.4
+parso==0.7.0
+pexpect==4.8.0
+pickleshare==0.7.5
+Pillow==8.0.1
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1602688806899/work
+ptyprocess==0.6.0
+Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+python-dateutil==2.8.1
+pyzmq==19.0.2
+six==1.15.0
+torch==1.6.0+cu101
+torchvision==0.7.0+cu101
+tornado==6.0.4
+traitlets==4.3.3
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
