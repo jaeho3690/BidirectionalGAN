@@ -1,3 +1,3 @@
-data/
+data/MNIST/
 __pycache__
 saved/generated_images/*.png
