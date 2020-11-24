@@ -14,14 +14,15 @@ class Generator(nn.Module):
             layers = [nn.Linear(in_feat, out_feat)]
             if normalize:
                 layers.append(nn.BatchNorm1d(out_feat, 0.8))
-            layers.append(nn.LeakyReLU(0.2, inplace=False))
+            layers.append(nn.LeakyReLU(0.2, inplace=True))
             return layers
 
         self.model = nn.Sequential(
             *block(latent_dim, 128, normalize=True),
             *block(128, 256),
             *block(256, 512),
-            nn.Linear(512, int(np.prod(img_shape))),
+            *block(512, 1024),
+            nn.Linear(1024, int(np.prod(img_shape))),
             nn.Tanh()
         )
     def forward(self, z):
@@ -44,10 +45,11 @@ class Encoder(nn.Module):
             return layers
 
         self.model = nn.Sequential(
-            nn.Linear(int(np.prod(self.img_shape)),512),
+            nn.Linear(int(np.prod(self.img_shape)),1024),
+            *block(1024, 512, normalize=True),
             *block(512, 256, normalize=True),
-            *block(256, 128),
-            nn.Linear(128, latent_dim),
+            *block(256, 128, normalize=True),
+            *block(128, latent_dim, normalize=True),
             nn.Tanh()
         )
 
@@ -66,11 +68,14 @@ class Discriminator(nn.Module):
 
         self.model = nn.Sequential(
             nn.Linear(joint_shape, 512),
-            nn.LeakyReLU(0.2, inplace=False),
-            nn.Linear(512, 256),
-            nn.LeakyReLU(0.2, inplace=False),
-            nn.Linear(256, 1),
-            nn.Sigmoid(),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.Linear(512, 512),
+            nn.Dropout(0.4),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.Linear(512, 512),
+            nn.Dropout(0.4),
+            nn.LeakyReLU(0.2, inplace=True),
+            nn.Linear(512, 1),
         )
 
     def forward(self, img, z):
