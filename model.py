@@ -113,10 +113,15 @@ class BiGAN(nn.Module):
                     print (f'Generator Loss: {G_loss.item():.4f} Discriminator Loss: {D_loss.item():.4f}')
  
                 if i % 400 ==0:
-                    vutils.save_image(gen_img.unsqueeze(1).cpu().data[:16, ], f'{self._img_save_path}/E{epoch}_Iteration{i}_fake.png')
-                    vutils.save_image(original_img.unsqueeze(1).cpu().data[:16, ], f'{self._img_save_path}/E{epoch}_Iteration{i}_real.png')
+                    vutils.save_image(gen_img.unsqueeze(1).cpu().data[:64, ], f'{self._img_save_path}/E{epoch}_Iteration{i}_fake.png')
+                    vutils.save_image(original_img.unsqueeze(1).cpu().data[:64, ], f'{self._img_save_path}/E{epoch}_Iteration{i}_real.png')
                     print('image saved')
                     print('')
+            if epoch % 100==0:
+                torch.save(self._G.state_dict(), f'{self._model_save_path}/netG_{epoch}epoch.pth')
+                torch.save(self._E.state_dict(), f'{self._model_save_path}/netE_{epoch}epoch.pth')
+                torch.save(self._D.state_dict(), f'{self._model_save_path}/netD_{epoch}epoch.pth')
+
 
 
 

@@ -1,3 +1,4 @@
 data/MNIST/
 __pycache__
 saved/generated_images/*.png
+saved/model_weight/*.pth

@@ -10,7 +10,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--work_type', type=str, default='train', help="choose work type 'train' or 'test'")
-    parser.add_argument('--epochs', default=400, type=int,help='number of total epochs to run')
+    parser.add_argument('--epochs', default=401, type=int,help='number of total epochs to run')
     parser.add_argument('--batch_size', default=128, type=int,help='mini-batch size (default: 32)')
     parser.add_argument('--early_stopping', default=50, type=int,
                         metavar='N', help='early stopping (default: 50)')
